@@ -33,25 +33,11 @@ new_partialised <- function(f, args = list(), ..., class = character()) {
   )
 }
 
-#' Argument lists for partialised functions
-#'
-#' @param x Partialised function.
-#' @param value A list of arguments.
-#'
-#' @return `arguments()` returns a list of arguments.
-#'
-#' @name arguments
-NULL
-
-#' @export
-#' @rdname arguments
 arguments <- function(x) {
   out <- rlang::call_args(attr(x, "body"))
   out[-vctrs::vec_size(out)]
 }
 
-#' @export
-#' @rdname arguments
 `arguments<-` <- function(x, value) {
   attrs <- attributes(x)
   attrs <- attrs[!names(attrs) %in% c("body", "fn")]

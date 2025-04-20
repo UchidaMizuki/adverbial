@@ -1,4 +1,4 @@
-test_that("dist", {
+test_that("partialised dist", {
   dist <- function(x, y) {
     sqrt(x^2 + y^2)
   }

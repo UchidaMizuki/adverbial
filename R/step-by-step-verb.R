@@ -1,3 +1,15 @@
+#' Take the next step
+#'
+#' @description
+#' `next_step()` is used to take the next step in a step-by-step process.
+#'
+#' @param .object A step-by-step object.
+#' @param .step The step to take.
+#' @param ... Additional arguments to pass to the step function.
+#'
+#' @return The updated step-by-step object.
+#'
+#' @export
 next_step <- function(.object, .step, ...) {
   step <- vctrs::vec_cast(.step, character())
   vctrs::vec_check_size(step, size = 1)
@@ -27,6 +39,27 @@ next_step <- function(.object, .step, ...) {
   .object
 }
 
+#' Manipulate steps
+#'
+#' @description
+#' These functions are used to manipulate the steps of a step-by-step object.
+#'
+#' @param object A step-by-step object.
+#' @param fns A list of functions to be applied step by step.
+#' @param steps A character vector of step names.
+#' @param descriptions A character vector of step descriptions.
+#' @param before,after The step before or after which to insert the new steps.
+#' @param step The step to be updated or deleted.
+#' @param f The function to be applied to the step.
+#' @param description The description of the step.
+#'
+#' @return The updated step-by-step object.
+#'
+#' @name step-by-step-manipulation
+NULL
+
+#' @rdname step-by-step-manipulation
+#' @export
 insert_step <- function(
   object,
   fns,
@@ -71,6 +104,8 @@ insert_step <- function(
   object
 }
 
+#' @rdname step-by-step-manipulation
+#' @export
 update_step <- function(object, step, f = NULL, description = NULL) {
   check_step_no_done(object)
 
@@ -86,6 +121,8 @@ update_step <- function(object, step, f = NULL, description = NULL) {
   object
 }
 
+#' @rdname step-by-step-manipulation
+#' @export
 delete_step <- function(object, step) {
   check_step_no_done(object)
 

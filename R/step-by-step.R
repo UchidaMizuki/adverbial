@@ -1,3 +1,18 @@
+#' Wrap functions for step-by-step data processing
+#'
+#' @description
+#' `step_by_step()` creates a step-by-step object that allows you to apply
+#' functions to data in a sequence.
+#'
+#' @param fns A list of functions to be applied step by step.
+#' @param steps A character vector of step names.
+#' @param descriptions A character vector of step descriptions.
+#' @param ... Additional arguments for attributes.
+#'
+#' @return A function that takes `data` and returns an object that inherits from
+#' `adverbial_object_step_by_step`.
+#'
+#' @export
 step_by_step <- function(fns, steps = names(fns), descriptions = NULL, ...) {
   steps <- get_steps(
     fns = fns,

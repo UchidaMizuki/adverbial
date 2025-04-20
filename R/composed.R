@@ -21,7 +21,7 @@
 #'
 #' @export
 new_composed <- function(fns, dir = NULL, ..., class = character()) {
-  vctrs::vec_assert(fns, list())
+  vctrs::obj_check_list(fns)
 
   if (is.null(dir)) {
     dir <- "forward"

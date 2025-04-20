@@ -17,8 +17,8 @@
 #' pdist(y = 4)
 #'
 #' @export
-new_partialised <- function(f, args = list(), ..., class = character()) {
-  vctrs::vec_assert(args, list())
+new_partialised <- function(f, args, ..., class = character()) {
+  vctrs::obj_check_list(args)
 
   attrs <- rlang::list2(...)
   attrs <- attrs[!names(attrs) %in% c("body", "fn")]
@@ -88,13 +88,8 @@ names.adverbial_function_partial <- function(x) {
 #' @export
 print.adverbial_function_partial <- function(x, ...) {
   cli::cat_line(paste0("<", pillar::obj_sum(x), ">"))
-
   print_fn(x)
-
-  cli::cat_line("(")
   print_args(arguments(x))
-  cli::cat_line(strrep(" ", 2L), "...")
-  cli::cat_line(")")
 
   invisible(x)
 }
@@ -104,9 +99,17 @@ print_fn <- function(x) {
 }
 
 print_args <- function(x) {
+  cli::cat_line("(")
+  out <- format_args(x)
+  cli::cat_line(strrep(" ", 2L), names(out), out)
+  cli::cat_line(strrep(" ", 2L), "...")
+  cli::cat_line(")")
+}
+
+format_args <- function(x) {
   if (!vctrs::vec_is_empty(x)) {
-    nms <- pillar::align(rlang::names2(x))
-    nms <- paste0(strrep(" ", 2L), nms, " = ")
+    nms <- paste0(rlang::names2(x), " = ")
+    nms <- pillar::align(nms)
 
     opts <- options()
     on.exit(options(opts))
@@ -127,8 +130,7 @@ print_args <- function(x) {
 
       out
     })
-    out <- vctrs::vec_c(!!!out)
-    cli::cat_line(names(out), out)
+    vctrs::vec_c(!!!out)
   }
 }
 

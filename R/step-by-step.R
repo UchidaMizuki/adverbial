@@ -1,5 +1,7 @@
 #' Wrap functions for step-by-step data processing
 #'
+#' `r lifecycle::badge("experimental")`
+#'
 #' @description
 #' `step_by_step()` creates a step-by-step object that allows you to apply
 #' functions to data in a sequence.

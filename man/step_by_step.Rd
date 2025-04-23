@@ -23,3 +23,6 @@ A function that takes \code{data} and returns an object that inherits from
 \code{step_by_step()} creates a step-by-step object that allows you to apply
 functions to data in a sequence.
 }
+\details{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
+}

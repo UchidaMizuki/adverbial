@@ -21,6 +21,7 @@ step_by_step <- function(fns, steps = names(fns), descriptions = NULL, ...) {
     steps = steps,
     descriptions = descriptions
   )
+  steps$state <- "todo"
   steps$state[[1]] <- "doing"
 
   function(data) {
@@ -42,8 +43,7 @@ get_steps <- function(fns, steps, descriptions) {
   vctrs::data_frame(
     step = steps,
     fn = fns,
-    description = descriptions,
-    state = "todo"
+    description = descriptions
   )
 }
 

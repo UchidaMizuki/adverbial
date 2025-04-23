@@ -98,6 +98,7 @@ insert_step <- function(
     fns_steps,
     object_steps[[2]]
   )
+  steps$state <- "todo"
   steps$state[[1]] <- "doing"
 
   object$steps <- steps

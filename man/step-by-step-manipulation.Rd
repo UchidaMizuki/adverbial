@@ -42,4 +42,6 @@ The updated step-by-step object.
 }
 \description{
 These functions are used to manipulate the steps of a step-by-step object.
+They allow you to insert, update, or delete steps.
+You should use them before calling \code{next_step()}.
 }

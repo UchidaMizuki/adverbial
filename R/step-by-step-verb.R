@@ -43,6 +43,8 @@ next_step <- function(.object, .step, ...) {
 #'
 #' @description
 #' These functions are used to manipulate the steps of a step-by-step object.
+#' They allow you to insert, update, or delete steps.
+#' You should use them before calling `next_step()`.
 #'
 #' @param object A step-by-step object.
 #' @param fns A list of functions to be applied step by step.
@@ -134,6 +136,25 @@ delete_step <- function(object, step) {
   )
   object$steps <- vctrs::vec_slice(object$steps, -loc)
   object
+}
+
+#' Wrap a function to be used as a step
+#'
+#' @description
+#' `wrap_step()` wraps a function to be used as a step in a step-by-step
+#' process.
+#'
+#' @param f A function to be wrapped.
+#'
+#' @return A function that takes a step-by-step object and additional
+#' arguments, and returns the updated step-by-step object.
+#'
+#' @export
+wrap_step <- function(f) {
+  function(object, ...) {
+    object$data <- f(object$data, ...)
+    object
+  }
 }
 
 check_step_no_done <- function(object) {

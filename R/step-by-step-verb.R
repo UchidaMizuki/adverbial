@@ -88,8 +88,8 @@ insert_step <- function(
   object_steps <- vctrs::vec_chop(object$steps, sizes = sizes)
 
   fns_steps <- get_steps(
-    fns = fns,
     steps = steps,
+    fns = fns,
     descriptions = descriptions
   )
 

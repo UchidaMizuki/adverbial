@@ -4,16 +4,16 @@
 \alias{step_by_step}
 \title{Wrap functions for step-by-step data processing}
 \usage{
-step_by_step(fns, steps = names(fns), descriptions = NULL, ...)
+step_by_step(fns, descriptions = NULL, ..., steps = names(fns))
 }
 \arguments{
 \item{fns}{A list of functions to be applied step by step.}
 
-\item{steps}{A character vector of step names.}
-
 \item{descriptions}{A character vector of step descriptions.}
 
 \item{...}{Additional arguments for attributes.}
+
+\item{steps}{A character vector of step names.}
 }
 \value{
 A function that takes \code{data} and returns an object that inherits from

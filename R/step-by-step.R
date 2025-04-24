@@ -7,18 +7,18 @@
 #' functions to data in a sequence.
 #'
 #' @param fns A list of functions to be applied step by step.
-#' @param steps A character vector of step names.
 #' @param descriptions A character vector of step descriptions.
 #' @param ... Additional arguments for attributes.
+#' @param steps A character vector of step names.
 #'
 #' @return A function that takes `data` and returns an object that inherits from
 #' `adverbial_object_step_by_step`.
 #'
 #' @export
-step_by_step <- function(fns, steps = names(fns), descriptions = NULL, ...) {
+step_by_step <- function(fns, descriptions = NULL, ..., steps = names(fns)) {
   steps <- get_steps(
-    fns = fns,
     steps = steps,
+    fns = fns,
     descriptions = descriptions
   )
   steps$state <- "todo"
@@ -36,9 +36,9 @@ step_by_step <- function(fns, steps = names(fns), descriptions = NULL, ...) {
   }
 }
 
-get_steps <- function(fns, steps, descriptions) {
-  fns <- vctrs::vec_cast(fns, list())
+get_steps <- function(steps, fns, descriptions) {
   steps <- vctrs::vec_cast(steps, character())
+  fns <- vctrs::vec_cast(fns, list())
   descriptions <- descriptions %||% purrr::map_chr(fns, pillar::obj_sum)
   vctrs::data_frame(
     step = steps,

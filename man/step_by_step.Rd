@@ -2,24 +2,23 @@
 % Please edit documentation in R/step-by-step.R
 \name{step_by_step}
 \alias{step_by_step}
-\title{Wrap functions for step-by-step data processing}
+\title{Create a step-by-step object}
 \usage{
-step_by_step(fns, descriptions = NULL, ...)
+step_by_step(steps)
 }
 \arguments{
-\item{fns}{A list of functions to be applied step by step.}
-
-\item{descriptions}{A character vector of step descriptions.}
-
-\item{...}{Additional arguments for attributes.}
+\item{steps}{A named vector of steps to be completed. The names of the
+vector are the names of the steps, and the values are the descriptions of
+the steps.}
 }
 \value{
-A function that takes \code{data} and returns an object that inherits from
-\code{adverbial_object_step_by_step}.
+A function that takes an object and returns a step-by-step object.
 }
 \description{
-\code{step_by_step()} creates a step-by-step object that allows you to apply
-functions to data in a sequence.
+\code{step_by_step()} creates a step-by-step object that can be used to track the
+progress of a process.
+It is useful for long-running processes where you want to keep track of
+the steps that have been completed and the steps that are still to be done.
 }
 \details{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}

@@ -19,3 +19,6 @@ The updated step-by-step object.
 \description{
 \code{next_step()} is used to take the next step in a step-by-step process.
 }
+\details{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
+}

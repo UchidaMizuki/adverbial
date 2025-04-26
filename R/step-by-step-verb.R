@@ -1,5 +1,7 @@
 #' Take the next step
 #'
+#' `r lifecycle::badge("experimental")`
+#'
 #' @description
 #' `next_step()` is used to take the next step in a step-by-step process.
 #'
@@ -41,6 +43,8 @@ next_step <- function(.object, .step, ...) {
 
 #' Manipulate steps
 #'
+#' `r lifecycle::badge("experimental")`
+#'
 #' @description
 #' These functions are used to manipulate the steps of a step-by-step object.
 #' They allow you to insert, update, or delete steps.
@@ -48,7 +52,6 @@ next_step <- function(.object, .step, ...) {
 #'
 #' @param object A step-by-step object.
 #' @param fns A list of functions to be applied step by step.
-#' @param steps A character vector of step names.
 #' @param descriptions A character vector of step descriptions.
 #' @param before,after The step before or after which to insert the new steps.
 #' @param step The step to be updated or deleted.
@@ -65,7 +68,6 @@ NULL
 insert_step <- function(
   object,
   fns,
-  steps = names(fns),
   descriptions = NULL,
   before = NULL,
   after = NULL
@@ -90,7 +92,6 @@ insert_step <- function(
   object_steps <- vctrs::vec_chop(object$steps, sizes = sizes)
 
   fns_steps <- get_steps(
-    steps = steps,
     fns = fns,
     descriptions = descriptions
   )
@@ -139,6 +140,8 @@ delete_step <- function(object, step) {
 }
 
 #' Wrap a function to be used as a step
+#'
+#' `r lifecycle::badge("experimental")`
 #'
 #' @description
 #' `wrap_step()` wraps a function to be used as a step in a step-by-step

@@ -9,15 +9,13 @@
 #' @param fns A list of functions to be applied step by step.
 #' @param descriptions A character vector of step descriptions.
 #' @param ... Additional arguments for attributes.
-#' @param steps A character vector of step names.
 #'
 #' @return A function that takes `data` and returns an object that inherits from
 #' `adverbial_object_step_by_step`.
 #'
 #' @export
-step_by_step <- function(fns, descriptions = NULL, ..., steps = names(fns)) {
+step_by_step <- function(fns, descriptions = NULL, ...) {
   steps <- get_steps(
-    steps = steps,
     fns = fns,
     descriptions = descriptions
   )
@@ -36,12 +34,10 @@ step_by_step <- function(fns, descriptions = NULL, ..., steps = names(fns)) {
   }
 }
 
-get_steps <- function(steps, fns, descriptions) {
-  steps <- vctrs::vec_cast(steps, character())
-  fns <- vctrs::vec_cast(fns, list())
+get_steps <- function(fns, descriptions) {
   descriptions <- descriptions %||% purrr::map_chr(fns, pillar::obj_sum)
   vctrs::data_frame(
-    step = steps,
+    step = names(fns),
     fn = fns,
     description = descriptions
   )
@@ -69,8 +65,7 @@ print_steps_state <- function(x) {
   steps <- paste0(
     vctrs::vec_seq_along(x$steps),
     ". ",
-    x$steps$step,
-    " "
+    x$steps$step
   )
   descriptions <- x$steps$description %||%
     purrr::map_chr(x$steps$fn, pillar::obj_sum)
@@ -90,7 +85,11 @@ print_steps_state <- function(x) {
 print_steps_info <- function(x) {
   loc_next_step <- vctrs::vec_match("doing", x$steps$state)
   if (is.na(loc_next_step)) {
-    cat_line_subtle("# ", cli::symbol$info, " All steps are done.")
+    cat_line_subtle(
+      "# ",
+      cli::symbol$info,
+      ' All steps are done. Please call `purrr::chuck("data")` to get the data.'
+    )
   } else {
     next_step <- encodeString(x$steps$step[[loc_next_step]], quote = "\"")
     cat_line_subtle(

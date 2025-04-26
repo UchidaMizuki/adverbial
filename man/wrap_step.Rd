@@ -17,3 +17,6 @@ arguments, and returns the updated step-by-step object.
 \code{wrap_step()} wraps a function to be used as a step in a step-by-step
 process.
 }
+\details{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
+}

@@ -7,14 +7,7 @@
 \alias{delete_step}
 \title{Manipulate steps}
 \usage{
-insert_step(
-  object,
-  fns,
-  steps = names(fns),
-  descriptions = NULL,
-  before = NULL,
-  after = NULL
-)
+insert_step(object, fns, descriptions = NULL, before = NULL, after = NULL)
 
 update_step(object, step, f = NULL, description = NULL)
 
@@ -24,8 +17,6 @@ delete_step(object, step)
 \item{object}{A step-by-step object.}
 
 \item{fns}{A list of functions to be applied step by step.}
-
-\item{steps}{A character vector of step names.}
 
 \item{descriptions}{A character vector of step descriptions.}
 
@@ -44,4 +35,7 @@ The updated step-by-step object.
 These functions are used to manipulate the steps of a step-by-step object.
 They allow you to insert, update, or delete steps.
 You should use them before calling \code{next_step()}.
+}
+\details{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
 }

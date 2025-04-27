@@ -13,9 +13,9 @@ end_step(object)
 The object with the step-by-step attributes removed.
 }
 \description{
-\code{end_step()} ends the step-by-step process and removes the step-by-step
-attributes from the object.
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
 }
 \details{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
+\code{end_step()} ends the step-by-step process and removes the step-by-step
+attributes from the object.
 }

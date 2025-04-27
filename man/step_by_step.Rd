@@ -15,11 +15,11 @@ the steps.}
 A function that takes an object and returns a step-by-step object.
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
+}
+\details{
 \code{step_by_step()} creates a step-by-step object that can be used to track the
 progress of a process.
 It is useful for long-running processes where you want to keep track of
 the steps that have been completed and the steps that are still to be done.
-}
-\details{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
 }

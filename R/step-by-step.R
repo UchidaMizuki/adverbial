@@ -24,7 +24,6 @@ new_step_by_step <- function(
 #'
 #' `r lifecycle::badge("experimental")`
 #'
-#' @description
 #' `step_by_step()` creates a step-by-step object that can be used to track the
 #' progress of a process.
 #' It is useful for long-running processes where you want to keep track of
@@ -57,7 +56,6 @@ step_by_step <- function(steps) {
 #'
 #' `r lifecycle::badge("experimental")`
 #'
-#' @description
 #' `wrap_step()` wraps a function to be used as a step in a step-by-step
 #' process.
 #'
@@ -81,7 +79,6 @@ wrap_step <- function(f, name = NULL) {
 #'
 #' `r lifecycle::badge("experimental")`
 #'
-#' @description
 #' `end_step()` ends the step-by-step process and removes the step-by-step
 #' attributes from the object.
 #'

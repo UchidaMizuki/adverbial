@@ -19,9 +19,10 @@ knitr::opts_chunk$set(
 [![CRAN status](https://www.r-pkg.org/badges/version/adverbial)](https://CRAN.R-project.org/package=adverbial)
 <!-- badges: end -->
 
-adverbial provides `new_partialised()` and `new_composed()`, which extend the 
-`partial()` and `compose()` functions of 'purrr' to make it easier to extract and 
-replace arguments and functions.
+adverbial provides `new_partialised()` and `new_composed()`, which extend 
+purrr's `partial()` and `compose()` functions to make it easier to extract and 
+replace arguments and functions, and has additional adverbial functions such as 
+`as_step()` for step-by-step data processing.
 
 ## Installation
 
@@ -36,13 +37,18 @@ install.packages("adverbial")
 devtools::install_github("UchidaMizuki/adverbial")
 ```
 
-## Example
+## Examples
 
-### Partialised functions
+```{r example-load}
+library(adverbial)
+```
+
+### Enhanced partialised functions
+
+`new_partialised()` is an enhanced version of `partial()` from purrr. 
+It allows you to extract and replace arguments of the function.
 
 ```{r example-partialised}
-library(adverbial)
-
 dist <- function(x, y) {
   sqrt(x ^ 2 + y ^ 2)
 }
@@ -54,6 +60,7 @@ pdist <- new_partialised(
 pdist
 pdist(y = 4)
 
+# Get partialised arguments
 pdist[]
 pdist$x
 pdist$y
@@ -65,7 +72,10 @@ pdist$y <- 8
 pdist()
 ```
 
-### Composed functions
+### Enhanced composed functions
+
+`new_composed()` is an enhanced version of `compose()` from purrr.
+It allows you to extract and replace functions in the composition.
 
 ```{r example-composed}
 square <- function(x) x^2
@@ -80,7 +90,54 @@ cdist <- new_composed(
 cdist
 cdist(1:10)
 
+# Get composed functions
 cdist[]
 cdist$sum <- new_partialised(sum, list(na.rm = TRUE))
+
 cdist(c(1:10, NA))
+```
+
+### Step-by-step data processing
+
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+
+`step_by_step()` defines a step-by-step data processing pipeline by passing a 
+character vector with step names and descriptions.
+
+`as_step()` converts an existing function into a step function that can be used 
+in a pipeline.
+Generated functions check if a step is correct for objects created with 
+`step-by-step()` and act as a normal function for other objects.
+With `as_step(f)` (without passing a second argument) you can add another 
+function to step-by-step data processing.
+
+`end_step()` is a function that can be used to end the step-by-step data
+processing pipeline and return the result.
+
+```{r example-step-by-step}
+# Define a step-by-step data processing pipeline
+dist_calculator <- step_by_step(c(
+  square_step = "Square the input",
+  sum_step = "Sum the squares",
+  sqrt_step = "Take the square root"
+))
+
+# Define the steps
+square_step <- as_step(function(x) x^2, "square_step")
+sum_step <- as_step(sum, "sum_step")
+sqrt_step <- as_step(sqrt, "sqrt_step")
+
+square_step
+sum_step
+sqrt_step
+
+dist <- dist_calculator(c(1:10, NA))
+dist
+
+dist <- dist |> 
+  square_step() |> 
+  sum_step(na.rm = TRUE) |>
+  sqrt_step()
+dist
+end_step(dist)
 ```

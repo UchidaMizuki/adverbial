@@ -4,9 +4,9 @@
 \name{adverbial-package}
 \alias{adverbial}
 \alias{adverbial-package}
-\title{adverbial: Enhanced Partialised and Composed Functions}
+\title{adverbial: Enhanced Adverbial Functions}
 \description{
-Provides new_partialised() and new_composed(), which extend the partial() and compose() functions of 'purrr' to make it easier to extract and replace arguments and functions.
+Provides new_partialised() and new_composed(), which extend partial() and compose() functions of 'purrr' to make it easier to extract and replace arguments and functions. It also has additional adverbial functions.
 }
 \seealso{
 Useful links:

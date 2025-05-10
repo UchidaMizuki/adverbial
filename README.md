@@ -13,7 +13,7 @@ coverage](https://codecov.io/gh/UchidaMizuki/adverbial/graph/badge.svg)](https:/
 <!-- badges: end -->
 
 adverbial provides `new_partialised()` and `new_composed()`, which
-extend purrr’s `partial()` and `compose()` functions to make it easier
+extend `partial()` and `compose()` functions of purrr to make it easier
 to extract and replace arguments and functions, and has additional
 adverbial functions such as `as_step()` for step-by-step data
 processing.

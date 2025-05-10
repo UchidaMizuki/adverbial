@@ -11,7 +11,7 @@ Authors@R:
     )
 Description: Provides new_partialised() and new_composed(), which extend 
     partial() and compose() functions of 'purrr' to make it easier to extract 
-    and replace arguments and functions. It also has additional adverbial 
+    and replace arguments and functions. It also has additional adverbial
     functions.
 License: MIT + file LICENSE
 Encoding: UTF-8

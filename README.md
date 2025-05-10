@@ -7,6 +7,9 @@
 
 [![CRAN
 status](https://www.r-pkg.org/badges/version/adverbial)](https://CRAN.R-project.org/package=adverbial)
+[![R-CMD-check](https://github.com/UchidaMizuki/adverbial/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/UchidaMizuki/adverbial/actions/workflows/R-CMD-check.yaml)
+[![Codecov test
+coverage](https://codecov.io/gh/UchidaMizuki/adverbial/graph/badge.svg)](https://app.codecov.io/gh/UchidaMizuki/adverbial)
 <!-- badges: end -->
 
 adverbial provides `new_partialised()` and `new_composed()`, which

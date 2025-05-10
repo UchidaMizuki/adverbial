@@ -11,9 +11,9 @@ test_that("step-by-step works", {
     sum_step = "Sum the squares",
     sqrt_step = "Take the square root"
   ))
-  square_step <- wrap_step(function(x) x^2, "square_step")
-  sum_step <- wrap_step(sum, "sum_step")
-  sqrt_step <- wrap_step(sqrt, "sqrt_step")
+  square_step <- as_step(function(x) x^2, "square_step")
+  sum_step <- as_step(sum, "sum_step")
+  sqrt_step <- as_step(sqrt, "sqrt_step")
 
   x <- c(1:10, NA)
   dist <- dist_calculator(x)

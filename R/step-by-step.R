@@ -56,7 +56,7 @@ step_by_step <- function(steps) {
 #'
 #' `r lifecycle::badge("experimental")`
 #'
-#' `wrap_step()` wraps a function to be used as a step in a step-by-step
+#' `as_step()` wraps a function to be used as a step in a step-by-step
 #' process.
 #'
 #' @param f A function to be wrapped.
@@ -67,12 +67,19 @@ step_by_step <- function(steps) {
 #' arguments, and returns the updated step-by-step object.
 #'
 #' @export
-wrap_step <- function(f, name = NULL) {
+as_step <- function(f, name = NULL) {
   name <- vctrs::vec_cast(name, character())
 
-  function(object, ...) {
-    next_step(f, name)(object, ...)
-  }
+  structure(
+    function(object, ...) {
+      wrap_step(f, name)(object, ...)
+    },
+    adverbial_function_step_by_step = list(
+      f = f,
+      name = name
+    ),
+    class = "adverbial_function_step_by_step"
+  )
 }
 
 #' End a step-by-step process
@@ -93,7 +100,7 @@ end_step <- function(object) {
   object
 }
 
-next_step <- function(f, name) {
+wrap_step <- function(f, name) {
   function(object, ...) {
     if (inherits(object, "adverbial_object_step_by_step")) {
       attr_object <- attr(object, "adverbial_object_step_by_step")
@@ -181,5 +188,29 @@ print_steps_info <- function(object) {
       next_step,
       "()` to continue."
     )
+  }
+}
+
+#' @export
+print.adverbial_function_step_by_step <- function(x, ...) {
+  cli::cat_line(paste0("<", pillar::obj_sum(x), ">"))
+
+  print(attr(x, "adverbial_function_step_by_step")$f)
+  invisible(x)
+}
+
+#' @export
+type_sum.adverbial_function_step_by_step <- function(x) {
+  "step"
+}
+
+#' @export
+obj_sum.adverbial_function_step_by_step <- function(x) {
+  name <- attr(x, "adverbial_function_step_by_step")$name
+
+  if (is.null(name)) {
+    pillar::type_sum(x)
+  } else {
+    paste0(pillar::type_sum(x), ": ", name)
   }
 }

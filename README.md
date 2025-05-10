@@ -55,7 +55,7 @@ pdist
 pdist(y = 4)
 #> [1] 5
 
-arguments(pdist)
+pdist[]
 #> $x
 #> [1] 3
 pdist$x
@@ -100,6 +100,18 @@ cdist
 cdist(1:10)
 #> [1] 19.62142
 
+cdist[]
+#> $square
+#> function (x) 
+#> x^2
+#> 
+#> $sum
+#> function (..., na.rm = FALSE) 
+#> .Primitive("sum")(..., na.rm = na.rm)
+#> 
+#> $sqrt
+#> function (x) 
+#> .Primitive("sqrt")(x)
 cdist$sum <- new_partialised(sum, list(na.rm = TRUE))
 cdist(c(1:10, NA))
 #> [1] 19.62142

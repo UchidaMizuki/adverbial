@@ -54,7 +54,7 @@ pdist <- new_partialised(
 pdist
 pdist(y = 4)
 
-arguments(pdist)
+pdist[]
 pdist$x
 pdist$y
 
@@ -80,6 +80,7 @@ cdist <- new_composed(
 cdist
 cdist(1:10)
 
+cdist[]
 cdist$sum <- new_partialised(sum, list(na.rm = TRUE))
 cdist(c(1:10, NA))
 ```

@@ -4,7 +4,7 @@
 \alias{new_partialised}
 \title{Create partialised functions}
 \usage{
-new_partialised(f, args = list(), ..., class = character())
+new_partialised(f, args, ..., class = character())
 }
 \arguments{
 \item{f}{A function.}

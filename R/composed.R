@@ -21,12 +21,12 @@
 #'
 #' @export
 new_composed <- function(fns, dir = NULL, ..., class = character()) {
-  vctrs::vec_assert(fns, list())
+  vctrs::obj_check_list(fns)
 
   if (is.null(dir)) {
     dir <- "forward"
     cli::cli_alert_info(
-      "No direction specified, using {.code dir = {.val forward}}."
+      "No direction specified, using {.code dir = {.val {dir}}}."
     )
   }
 
@@ -43,18 +43,6 @@ new_composed <- function(fns, dir = NULL, ..., class = character()) {
   )
 }
 
-#' Function lists for composed functions
-#'
-#' @param x Composed function.
-#' @param value A list of functions.
-#'
-#' @return `functions()` returns a list of functions.
-#'
-#' @name functions
-NULL
-
-#' @export
-#' @rdname functions
 functions <- function(x) {
   first_fn <- attr(x, "first_fn")
   fns <- attr(x, "fns")
@@ -64,8 +52,6 @@ functions <- function(x) {
   rlang::set_names(fns, fn_names)
 }
 
-#' @export
-#' @rdname functions
 `functions<-` <- function(x, value) {
   attrs <- attributes(x)
   attrs <- attrs[!names(attrs) %in% c("first_fn", "fns", "fn_names")]

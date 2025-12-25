@@ -157,7 +157,7 @@ print_steps_state <- function(object) {
   seq_along_steps <- vctrs::vec_seq_along(steps)
 
   symbol_state <- vctrs::vec_rep(cli::symbol$checkbox_off, size_steps)
-  symbol_state[1:current_step] <- cli::symbol$checkbox_on
+  symbol_state[seq_len(current_step)] <- cli::symbol$checkbox_on
 
   descriptions <- unname(steps)
   steps <- paste0(symbol_state, " ", seq_along_steps, ". ", names(steps), ": ")

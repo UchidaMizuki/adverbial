@@ -177,7 +177,7 @@ sqrt_step
 dist <- dist_calculator(c(1:10, NA))
 dist
 #> # Steps:
-#> # ☒ 1. square_step: Square the input
+#> # ☐ 1. square_step: Square the input
 #> # ☐ 2. sum_step:    Sum the squares
 #> # ☐ 3. sqrt_step:   Take the square root
 #> # ℹ Please call `square_step()` to continue.

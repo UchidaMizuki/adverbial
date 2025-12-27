@@ -1,3 +1,7 @@
+# adverbial 0.2.1
+
+* Fixed a bug in printing `adverbial_object_step_by_step`.
+
 # adverbial 0.2.0
 
 * Rename the package from partialised to adverbial, because the package now supports now supports composite functions and other adverbial functions.
